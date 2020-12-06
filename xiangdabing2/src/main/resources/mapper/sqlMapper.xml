@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.xiangdabing.dao.QueryDao">
+    <select id="queryAll" resultType="com.example.xiangdabing.entity.User">
+        select * from test_user
+    </select>
+    <insert id="insert" parameterType="com.example.xiangdabing.entity.User">
+        insert into test_user
+        (id,
+        name,
+        password,
+        memo,
+        crettime,
+        updetime
+        )values(
+        #{id},
+        #{name},
+        #{passWord},
+        #{memo},
+        now(),
+        now()
+        )
+    </insert>
+    <update id="update" parameterType="com.example.xiangdabing.entity.User">
+        update test_user
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="passWord != null and passWord != ''">
+                password = #{passWord},
+            </if>
+            <if test="memo != null and memo != ''">
+                memo = #{memo},
+            </if>
+                updetime = now()
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="delete" parameterType="com.example.xiangdabing.entity.User">
+        delete from test_user where id = #{id}
+    </delete>
+
+</mapper>
