@@ -19,7 +19,7 @@ public class Solution {
         }
         //找出第一个等于target的左下标
         while(i < length && nums[i] < target) {
-            i++;
+            i=i+1;
         }
         //没有找到相等的，说明不存在target
         if(nums[i] != target) {
